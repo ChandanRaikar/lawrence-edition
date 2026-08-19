@@ -24,14 +24,14 @@ export default function Hero() {
                             type="text"
                             id="location"
                             placeholder="Enter Location (City, State, Zip, etc"
-                            className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
+                            className="w-full px-4 py-2 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
                         />
                     </div>
                     <div className="w-full md:w-2/5 md:pl-2">
                         <label htmlFor="property-type" className="sr-only">Property Type</label>
                         <select
                             id="property-type"
-                            className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
+                            className="w-full px-4 py-2 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
                         >
                             <option value="All">All</option>
                             <option value="Apartment">Apartment</option>
@@ -46,7 +46,7 @@ export default function Hero() {
                     </div>
                     <button
                         type="submit"
-                        className="md:ml-4 mt-4 md:mt-0 w-full md:w-auto px-6 py-3 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-emerald-600"
+                        className="md:ml-4 mt-4 md:mt-0 w-full md:w-auto px-6 py-2 rounded-lg bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring focus:ring-emerald-600"
                     >
                         Search
                     </button>
