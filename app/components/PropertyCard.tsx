@@ -30,7 +30,7 @@ export default function PropertyCard({ property }) {
                     <h3 className="text-xl font-bold">{property.name}   </h3>
                 </div>
                 <h3
-                    className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right"
+                    className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-cyan-800 font-bold text-right md:text-center lg:text-right"
                 >
                     {getRateDisplay()}
                 </h3>
@@ -66,9 +66,9 @@ export default function PropertyCard({ property }) {
                     </div>
                     <Link
                         href={`/property/${property._id}`}
-                        className="h-9 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+                        className="h-9 bg-amber-800 hover:bg-amber-900 text-white px-9 py-2 rounded-lg text-center text-sm"
                     >
-                        Details
+                        View Details
                     </Link>
                 </div>
             </div>
