@@ -15,7 +15,7 @@ export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <nav className="bg-red-700 border-b border-red-900">
+        <nav className="bg-emerald-800 border-b border-emerald-900">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-20 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -65,15 +65,14 @@ export default function Navbar() {
                         {/* <!-- Desktop Menu Hidden below md screens --> */}
                         <div className="hidden md:ml-6 md:block">
                             <div className="flex space-x-2">
-                                <Link href="/" className={`${pathname === '/' ? 'bg-red-900' : ''} text-white  hover:bg-red-900 hover:text-white rounded-md px-3 py-2`}>Home</Link>
+                                <Link href="/" className={`${pathname === '/' ? 'bg-emerald-900' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}>Home</Link>
                                 <Link
                                     href="/properties"
-                                    className={`${pathname === '/properties' ? 'bg-red-900' : ''} text-white  hover:bg-red-900 hover:text-white rounded-md px-3 py-2`}> Properties</Link>
+                                    className={`${pathname === '/properties' ? 'bg-emerald-900' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}> Properties</Link>
                                 {isLoggedIn && (
                                     <Link
                                         href="/properties/add"
-                                        className={`${pathname === '/properties/add' ? 'bg-red-900' : ''} text-white  hover:bg-red-900 hover:text-white rounded-md px-3 py-2`}>Add Property</Link
-                                    >
+                                        className={`${pathname === '/properties/add' ? 'bg-emerald-900  ' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}>Add Property</Link>
                                 )}
                             </div>
                         </div>

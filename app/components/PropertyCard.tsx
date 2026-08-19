@@ -61,12 +61,12 @@ export default function PropertyCard({ property }) {
 
                 <div className="flex flex-col lg:flex-row justify-between mb-4">
                     <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-                        <FaMapMarker className="mt-1 text-orange-700" />{' '}
-                        <span className="text-orange-700"> {property.location.city} {property.location.state} </span>
+                        <FaMapMarker className="mt-1 text-emerald-700" />{' '}
+                        <span className="text-emerald-700 font-bold"> {property.location.city} {property.location.state} </span>
                     </div>
                     <Link
                         href={`/property/${property._id}`}
-                        className="h-9 bg-amber-800 hover:bg-amber-900 text-white px-9 py-2 rounded-lg text-center text-sm"
+                        className="h-9 bg-emerald-900 hover:bg-emerald-950 text-white px-9 py-2 rounded-lg text-center text-sm"
                     >
                         View Details
                     </Link>

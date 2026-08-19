@@ -18,7 +18,7 @@ export default function NotFoundPage() {
                         </p>
                         <Link
                             href="/"
-                            className="bg-red-700 hover:bg-red-900 text-white py-2 px-6 text-base rounded"
+                            className="bg-emerald-900 hover:bg-emerald-950 text-white py-2 px-6 text-base rounded"
                         >Go Home</Link>
                     </div>
                 </div>
