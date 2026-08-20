@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <section className="bg-red-700 py-20 mb-4">
+        <section className="bg-emerald-800 py-20 mb-4">
             <div
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
             >
