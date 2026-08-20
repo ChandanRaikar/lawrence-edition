@@ -65,7 +65,7 @@ export default function PropertyCard({ property }) {
                         <span className="text-emerald-700 font-bold"> {property.location.city} {property.location.state} </span>
                     </div>
                     <Link
-                        href={`/property/${property._id}`}
+                        href={`/properties/${property._id}`}
                         className="h-9 bg-emerald-900 hover:bg-emerald-950 text-white px-9 py-2 rounded-lg text-center text-sm"
                     >
                         View Details
