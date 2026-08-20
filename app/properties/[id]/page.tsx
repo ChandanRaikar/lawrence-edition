@@ -4,6 +4,7 @@ import PropertyHeaderImage from "@/app/components/PropertyHeaderImage";
 import Link from "next/link";
 import { FaArrowLeft, FaChevronLeft } from "react-icons/fa";
 import PropertyDetailsPage from "@/app/components/PropertyDetails";
+import HomeProperties from "@/app/components/HomeProperties";
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -32,6 +33,7 @@ export default async function PropertyPage({ params }: Props) {
                     </div>
                 </div>
             </section>
+            <HomeProperties />
         </>
     )
 }
