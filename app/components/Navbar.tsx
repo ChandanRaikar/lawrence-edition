@@ -1,18 +1,29 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Logo from '@/assets/styles/logo.jpg'
 import ProfileDefault from '@/app/assets/images/profile.png'
 import { FaGoogle } from 'react-icons/fa'
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export default function Navbar() {
 
+    const { data: session } = useSession();
+    const profileImage = session?.user?.image;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [providers, setProviders] = useState(null)
     const pathname = usePathname();
+
+    useEffect(() => {
+        const setAuthProviders = async () => {
+            const res = await getProviders();
+            setProviders(res);
+        }
+        setAuthProviders();
+    }, []);
 
     return (
         <nav className="bg-emerald-800 border-b border-emerald-900">
@@ -69,7 +80,7 @@ export default function Navbar() {
                                 <Link
                                     href="/properties"
                                     className={`${pathname === '/properties' ? 'bg-emerald-900' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}> Properties</Link>
-                                {isLoggedIn && (
+                                {session && (
                                     <Link
                                         href="/properties/add"
                                         className={`${pathname === '/properties/add' ? 'bg-emerald-900  ' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}>Add Property</Link>
@@ -80,21 +91,22 @@ export default function Navbar() {
 
                     {/* <!-- Right Side Menu (Logged Out) --> */}
 
-                    {!isLoggedIn && (
+                    {!session && (
                         <div className="hidden md:block md:ml-6">
                             <div className="flex items-center">
-                                <button
-                                    className="flex items-center text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                                >
-                                    <FaGoogle className="text-white mr-2" />
-                                    <span>Login or Register</span>
-                                </button>
+                                {providers && Object.values(providers).map((provider, index) => (
+                                    <button key={index} onClick={() => signIn(provider.id)} className="flex items-center text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
+                                        <FaGoogle className="text-white mr-2" />
+                                        <span>Login or Register</span>
+                                    </button>
+                                ))}
+
                             </div>
                         </div>
                     )}
 
                     {/* <!-- Right Side Menu (Logged In) --> */}
-                    {isLoggedIn && (
+                    {session && (
                         <div
                             className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0"
                         >
@@ -142,7 +154,9 @@ export default function Navbar() {
                                         <span className="sr-only">Open user menu</span>
                                         <Image
                                             className="h-8 w-8 rounded-full"
-                                            src={ProfileDefault}
+                                            src={profileImage || ProfileDefault}
+                                            width={40}
+                                            height={40}
                                             alt=""
                                         />
                                     </button>
@@ -178,6 +192,10 @@ export default function Navbar() {
                                                 className="block px-4 py-2 text-sm text-gray-700"
                                                 role="menuitem"
                                                 tabIndex="-1"
+                                                onClick={() => {
+                                                    setIsProfileMenuOpen(false)
+                                                    signOut();
+                                                }}
                                                 id="user-menu-item-2" >
                                                 Sign Out
                                             </button>
@@ -205,14 +223,14 @@ export default function Navbar() {
                                 className={`${pathname === '/properties' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
                             >Properties</Link
                             >
-                            {isLoggedIn && (
+                            {session && (
                                 <Link
                                     href="/properties/add"
                                     className={`${pathname === '/properties/add' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
                                 >Add Property</Link>
 
                             )}
-                            {!isLoggedIn && (
+                            {!session && (
                                 <button
                                     className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-5"
                                 >
