@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "models/Users.ts","models/Property.ts"  ],
+, "models/Users.ts","models/Property.ts", "app/api/auth/[...nextauth]/route.ts"  ],
   "exclude": ["node_modules"]
 }

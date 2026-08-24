@@ -1,6 +1,7 @@
-import { FaBath, FaBed, FaCheck, FaMapMarker, FaRulerCombined, FaTimes } from "react-icons/fa";
+import { FaBath, FaBed, FaCheck, FaMap, FaMapMarker, FaMapMarkerAlt, FaRulerCombined, FaTimes } from "react-icons/fa";
+import { FaMapLocation } from "react-icons/fa6";
 
-export default function PropertyDetailsPage({ property }) {
+export default function PropertyDetailsPage({ property }: any) {
     return (
         <main>
             <div
@@ -11,11 +12,8 @@ export default function PropertyDetailsPage({ property }) {
                 <div
                     className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
                 >
-                    <i
-                        className="fa-solid fa-location-dot text-lg text-emerald-700 mr-2"
-                    ></i>
                     <p className="text-emerald-700">
-                        <FaMapMarker className="text-emerald-700 inline mr-1" />{property.location.street} {property.location.city} {property.location.zipcode}
+                        <FaMapMarkerAlt className="text-emerald-700 inline mr-1" />{property.location.street} {property.location.city} {property.location.zipcode}
                     </p>
                 </div>
 
