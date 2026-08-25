@@ -18,13 +18,13 @@ export default function PropertyCard({ property }: any) {
     return (
         <>
             <Link href={`/properties/${property._id}`}>
-                <div className="rounded-xl shadow-md relative">
+                <div className="bg-mauve-100 shadow-md relative">
                     <Image
-                        src={`/images/properties/${property.images[0]}`}
+                        src={property.images[0]}
                         alt=""
                         width='0' height='0'
                         sizes='100vw'
-                        className="w-full h-auto rounded-t-xl"
+                        className="w-full h-auto"
                     />
                     <div className="p-4">
                         <div className="text-left md:text-center lg:text-left mb-6">

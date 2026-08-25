@@ -2,16 +2,25 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import PropertyHeaderImage from "@/app/components/PropertyHeaderImage";
 import Link from "next/link";
-import { FaArrowLeft, FaChevronLeft } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
 import PropertyDetailsPage from "@/app/components/PropertyDetails";
-import HomeProperties from "@/app/components/HomeProperties";
+import PropertyImages from "@/app/components/PropertyImages";
+import convertToSerializableObject from "@/utils/convertToObject"
 
 type Props = { params: Promise<{ id: string }> }
 
 export default async function PropertyPage({ params }: Props) {
     await connectDB();
     const { id } = await params;
-    const property = await Property.findById(id).lean();
+    const propertyDoc = await Property.findById(id).lean();
+    const property = convertToSerializableObject(propertyDoc)
+
+    if (!property) {
+        return (<h1 className="text-center text-xl font-bold mt-10">
+            Property not found!
+        </h1>)
+    }
+
 
     return (
         <>
@@ -33,7 +42,7 @@ export default async function PropertyPage({ params }: Props) {
                     </div>
                 </div>
             </section>
-            <HomeProperties />
+            <PropertyImages images={property.images} />
         </>
     )
 }
