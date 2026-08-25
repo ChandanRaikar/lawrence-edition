@@ -16,7 +16,7 @@ export default async function HomeProperties() {
                         Recently Added Properties
                     </h2>
                     {
-                        latestProperties.length === 0 ? ('<p>No properties found!</p>') : (
+                        latestProperties.length === 0 ? (<p className='text-center text-xl'>No properties found!</p>) : (
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                                 {
                                     latestProperties.map((property) => (
