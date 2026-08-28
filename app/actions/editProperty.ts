@@ -4,9 +4,8 @@ import Property from "@/models/Property";
 import getSessionUser from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import cloudinary from "@/config/cloudinary";
 
-export default async function addProperty(formData) {
+export default async function editProperty(propertyId, formData) {
   await connectDB();
   const sessionUser = await getSessionUser();
 
@@ -15,11 +14,12 @@ export default async function addProperty(formData) {
   }
 
   const { userId } = sessionUser;
-
   const amenities = formData.getAll("amenities");
-  const images = formData
-    .getAll("images")
-    .filter((image: any) => image.name !== "");
+  const existingProperty = await Property.findById(propertyId);
+
+  if (existingProperty.owner.toString() !== userId) {
+    throw new Error("You don't own this property");
+  }
 
   const propertyData = {
     owner: userId,
@@ -47,25 +47,10 @@ export default async function addProperty(formData) {
       phone: formData.get("seller_info.phone"),
     },
   };
-
-  const imageUrls = [];
-
-  for (const imageFile of images) {
-    const imageBuffer = await imageFile.arrayBuffer();
-    const imageArray = Array.from(new Uint8Array(imageBuffer));
-    const imageData = Buffer.from(imageArray);
-    const imageBase64 = imageData.toString("base64");
-    const result = await cloudinary.uploader.upload(
-      `data:image/png;base64,${imageBase64}`,
-      { folder: "lawrence-edition" },
-    );
-    imageUrls.push(result.secure_url);
-  }
-
-  propertyData.images = imageUrls;
-
-  const newProperty = new Property(propertyData);
-  await newProperty.save();
+  const updatedProperty = await Property.findByIdAndUpdate(
+    propertyId,
+    propertyData,
+  );
   revalidatePath("/", "layout");
-  redirect(`/properties/${newProperty._id}`);
+  redirect(`/properties/${updatedProperty._id}`);
 }

@@ -396,5 +396,5 @@ export default function PropertyAddhtmlForm() {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};

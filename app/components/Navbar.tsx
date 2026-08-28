@@ -11,6 +11,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 export default function Navbar() {
 
     const { data: session } = useSession();
+    console.log(session);
     const profileImage = session?.user?.image;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);

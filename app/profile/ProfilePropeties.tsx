@@ -39,7 +39,7 @@ export default function ProfileProperties({ properties: initialProperties }) {
                 </div>
                 <div className="mt-2">
                     <Link
-                        href="/add-property.html"
+                        href={`/properties/${property._id}/edit`}
                         className="bg-green-700 text-white px-3 py-2 rounded-md mr-2 hover:bg-green-800"
                     >
                         Edit
