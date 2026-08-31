@@ -18,7 +18,7 @@ export default function PropertyCard({ property }: any) {
     return (
         <>
             <Link href={`/properties/${property._id}`}>
-                <div className="bg-mauve-100 shadow-md relative">
+                <div className="border border-gray-400 relative">
                     <Image
                         src={property.images[0]}
                         alt=""
