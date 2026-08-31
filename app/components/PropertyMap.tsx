@@ -2,6 +2,12 @@
 import { setGlobal } from "next/dist/trace";
 import { useEffect, useState } from "react";
 import { setDefaults, fromAddress } from "react-geocode";
+import Map from "react-map-gl/mapbox";
+import { Marker } from "react-map-gl/mapbox";
+import Image from "next/image";
+import pin from '@/app/assets/images/pin.svg'
+import Spinner from "./Spinner";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function PropertyMap({ property }) {
     const [lat, setLat] = useState(null);
@@ -18,9 +24,10 @@ export default function PropertyMap({ property }) {
     const [geocodeError, setgeocodeError] = useState(false);
 
     setDefaults({
-        key: process.env.GOOGLE_GEOCODE_API,
-        language: "en",
-        region: "es",
+        key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
+        language: 'en',
+        region: 'us',
+        outputFormat: 'json'
     })
 
     useEffect(() => {
@@ -48,12 +55,26 @@ export default function PropertyMap({ property }) {
             }
         }
         fetchCoords();
-    })
-    if (loading) return (<h1>Loading...</h1>)
+    }, []);
+
+    if (loading) return (<Spinner />)
     if (geocodeError) {
         return (<div>Location not found</div>)
     }
-    return (<div>
-        map
-    </div>)
+    return (
+        <Map
+            mapboxAccessToken={process.env.NEXT_PUBLIC_MAP_BOX_TOKEN}
+            mapLib={import('mapbox-gl')}
+            initialViewState={{
+                longitude: lon,
+                latitude: lat,
+                zoom: 18
+            }}
+            style={{ width: '100%', height: 400 }}
+            mapStyle="mapbox://styles/mapbox/streets-v9">
+            <Marker longitude={lon} latitude={lat} anchor='bottom'>
+                <Image src={pin} alt="location" height={40} width={40} />
+            </Marker>
+        </Map>
+    )
 }
