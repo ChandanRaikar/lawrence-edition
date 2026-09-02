@@ -27,17 +27,17 @@ export default function PropertyCard({ property }: any) {
                         className="w-full h-auto"
                     />
                     <div className="p-4">
-                        <div className="text-left md:text-center lg:text-left mb-6">
-                            <div className="text-gray-600">{property.type}</div>
-                            <h3 className="text-xl font-bold">{property.name}   </h3>
+                        <div className="text-left md:text-center lg:text-left mb-2">
+                            <div className="text-gray-600 mb-2">{property.type}</div>
+                            <h3 className="text-base font-bold">{property.name}</h3>
                         </div>
                         <h3
-                            className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-cyan-800 font-bold text-right md:text-center lg:text-right"
+                            className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-black font-bold text-right md:text-center lg:text-right"
                         >
                             {getRateDisplay()}
                         </h3>
 
-                        <div className="flex justify-center gap-4 text-gray-500 mb-4">
+                        <div className="flex justify-left gap-4 text-black mb-4">
                             <p>
                                 <FaBed className="md:hidden lg:inline" />{' '}  {property.beds}{' '}
                                 <span className="md:hidden lg:inline">Beds</span>
@@ -52,21 +52,20 @@ export default function PropertyCard({ property }: any) {
                             </p>
                         </div>
 
-                        <div
-                            className="flex justify-center gap-4 text-green-900 text-sm mb-4"
-                        >
-                            <p><FaMoneyBill className="md:hidden lg:inline" />{' '} Weekly</p>
-                            <p><FaMoneyBill className="md:hidden lg:inline" />{' '} Monthly</p>
+                        <div className="flex justify-left gap-4 text-black text-sm mb-4 hidden">
+                            <p className="text-base">Availability:</p>
+                            <p className="text-base"><FaMoneyBill className="md:hidden lg:inline" />{' '} Weekly</p>
+                            <p className="text-base"><FaMoneyBill className="md:hidden lg:inline" />{' '} Monthly</p>
                         </div>
 
-                        <div className="border border-gray-100 mb-5"></div>
+                        <div className="border border-gray-100 mb-4"></div>
 
-                        <div className="flex flex-col lg:flex-row justify-between mb-4">
+                        <div className="flex flex-col lg:flex-row justify-between">
                             <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-                                <FaMapMarkerAlt className="mt-1 text-emerald-700" />{' '}
-                                <span className="text-emerald-700 font-bold"> {property.location.city} {property.location.state} </span>
+                                <FaMapMarkerAlt className="mt-1 text-black" />{' '}
+                                <span className="text-black font-bold"> {property.location.city} {property.location.state} </span>
                             </div>
-                            <span className="h-9 bg-emerald-900 hover:bg-emerald-950 text-white px-9 py-2 rounded-lg text-center text-sm">
+                            <span className="h-9 bg-black hover:bg-gray-800 text-white px-9 py-2 rounded-lg text-center text-sm">
                                 View Details
                             </span>
                         </div>

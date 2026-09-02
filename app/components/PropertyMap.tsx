@@ -62,19 +62,23 @@ export default function PropertyMap({ property }) {
         return (<div>Location not found</div>)
     }
     return (
-        <Map
-            mapboxAccessToken={process.env.NEXT_PUBLIC_MAP_BOX_TOKEN}
-            mapLib={import('mapbox-gl')}
-            initialViewState={{
-                longitude: lon,
-                latitude: lat,
-                zoom: 18
-            }}
-            style={{ width: '100%', height: 400 }}
-            mapStyle="mapbox://styles/mapbox/streets-v9">
-            <Marker longitude={lon} latitude={lat} anchor='bottom'>
-                <Image src={pin} alt="location" height={40} width={40} />
-            </Marker>
-        </Map>
+        <div>
+            <h2 className="text-xl font-bold mb-2">Property location</h2>
+            <p className="mb-4 text-base">{property.location.street} {property.location.city} {property.location.state} {property.location.zipcode}</p>
+            <Map
+                mapboxAccessToken={process.env.NEXT_PUBLIC_MAP_BOX_TOKEN}
+                mapLib={import('mapbox-gl')}
+                initialViewState={{
+                    longitude: lon,
+                    latitude: lat,
+                    zoom: 14
+                }}
+                style={{ width: '100%', height: 400 }}
+                mapStyle="mapbox://styles/mapbox/streets-v9">
+                <Marker longitude={lon} latitude={lat} anchor='bottom'>
+                    <Image src={pin} alt="location" height={40} width={40} />
+                </Marker>
+            </Map >
+        </div>
     )
 }
