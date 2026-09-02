@@ -26,7 +26,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="bg-emerald-800 border-b border-emerald-900">
+        <nav className="bg-gray-200 border-b border-gray-400">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-20 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -34,7 +34,7 @@ export default function Navbar() {
                         <button
                             type="button"
                             id="mobile-dropdown-button"
-                            className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                            className="relative inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-100"
                             aria-controls="mobile-menu"
                             aria-expanded="false"
                             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -69,21 +69,21 @@ export default function Navbar() {
                                 alt="Lawrence Edition"
                             />
 
-                            <span className="hidden md:block text-white text-2xl font-bold ml-2"
+                            <span className="hidden md:block text-black text-2xl font-bold ml-2"
                             >LawrenceEdition</span
                             >
                         </Link>
                         {/* <!-- Desktop Menu Hidden below md screens --> */}
                         <div className="hidden md:ml-6 md:block">
                             <div className="flex space-x-2">
-                                <Link href="/" className={`${pathname === '/' ? 'bg-emerald-900' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}>Home</Link>
+                                <Link href="/" className={`${pathname === '/' ? 'bg-black text-white' : ''}   hover:bg-black hover:text-white rounded-md px-3 py-2`}>Home</Link>
                                 <Link
                                     href="/properties"
-                                    className={`${pathname === '/properties' ? 'bg-emerald-900' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}> Properties</Link>
+                                    className={`${pathname === '/properties' ? 'bg-black text-white' : ''}   hover:bg-black hover:text-white rounded-md px-3 py-2`}> Properties</Link>
                                 {session && (
                                     <Link
                                         href="/properties/add"
-                                        className={`${pathname === '/properties/add' ? 'bg-emerald-900  ' : ''} text-white  hover:bg-emerald-950 hover:text-white rounded-md px-3 py-2`}>Add Property</Link>
+                                        className={`${pathname === '/properties/add' ? 'bg-black text-white' : ''}  hover:bg-black hover:text-white rounded-md px-3 py-2`}>Add Property</Link>
                                 )}
                             </div>
                         </div>
@@ -217,18 +217,18 @@ export default function Navbar() {
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             <Link
                                 href="/"
-                                className={`${pathname === '/' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
+                                className={`${pathname === '/' ? 'bg-black text-white' : ''}  block rounded-md px-3 py-2 text-base font-medium`}
                             >Home</Link
                             >
                             <Link
                                 href="/properties"
-                                className={`${pathname === '/properties' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
+                                className={`${pathname === '/properties' ? 'bg-black text-white' : ''}  block rounded-md px-3 py-2 text-base font-medium`}
                             >Properties</Link
                             >
                             {session && (
                                 <Link
                                     href="/properties/add"
-                                    className={`${pathname === '/properties/add' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
+                                    className={`${pathname === '/properties/add' ? 'bg-black text-white' : ''}  block rounded-md px-3 py-2 text-base font-medium`}
                                 >Add Property</Link>
 
                             )}
@@ -236,7 +236,7 @@ export default function Navbar() {
                                 <button
                                     className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-5"
                                 >
-                                    <i className="fa-brands fa-google mr-2"></i>
+                                    <FaGoogle className="text-white mr-2" />
                                     <span>Login or Register</span>
                                 </button>
                             )}

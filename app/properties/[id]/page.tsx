@@ -32,13 +32,13 @@ export default async function PropertyPage({ params }: Props) {
                 <div className="container m-auto py-6 px-6">
                     <Link
                         href="/properties"
-                        className="text-emerald-800 hover:text-emerald-950 flex items-center"
+                        className="text-black hover:text-gray-800 flex items-center"
                     >
                         <FaChevronLeft className="mr-2" /> Back to Properties
                     </Link>
                 </div>
             </section>
-            <section className="bg-emerald-50">
+            <section className="bg-gray-100">
                 <div className="container m-auto py-10 px-6">
                     <div className="grid grid-cols-12 gap-6">
                         <div className="md:col-span-8">

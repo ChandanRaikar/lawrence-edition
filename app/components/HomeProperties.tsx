@@ -12,7 +12,7 @@ export default async function HomeProperties() {
         <>
             <section>
                 <div className="container-xl lg:container m-auto px-4 py-6">
-                    <h2 className="text-3xl font-bold text-amber-800 mb-6 text-center">
+                    <h2 className="text-3xl font-bold text-black mb-6 text-center">
                         Recently Added Properties
                     </h2>
                     {

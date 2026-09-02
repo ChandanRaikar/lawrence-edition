@@ -13,12 +13,12 @@ export default function PropertyDetailsPage({ property }: any) {
                 <div
                     className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
                 >
-                    <p className="text-emerald-700">
-                        <FaMapMarkerAlt className="text-emerald-700 inline mr-1" />{property.location.street} {property.location.city} {property.location.zipcode}
+                    <p className="text-black">
+                        <FaMapMarkerAlt className="text-black inline mr-1" />{property.location.street} {property.location.city} {property.location.state} {property.location.zipcode}
                     </p>
                 </div>
 
-                <h3 className="text-lg font-bold my-6 bg-emerald-800 text-white px-4 py-2 rounded">
+                <h3 className="text-lg font-bold my-6 bg-black text-white px-4 py-2 rounded">
                     Rates & Availability
                 </h3>
                 <div className="flex flex-col md:flex-row justify-around">
@@ -26,22 +26,22 @@ export default function PropertyDetailsPage({ property }: any) {
                         className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0"
                     >
                         <div className="text-gray-500 mr-2 font-bold">Nightly</div>
-                        <div className="text-2xl font-bold text-emerald-500">
-                            {property.rates.nightly ? (`$${property.rates.nightly.toLocaleString()}`) : (<FaTimes className="text-red-700"></FaTimes>)}
+                        <div className="text-2xl font-bold text-black">
+                            {property.rates.nightly ? (`$${property.rates.nightly.toLocaleString()}`) : (<FaTimes className="text-text-black"></FaTimes>)}
                         </div>
                     </div>
                     <div
                         className="flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0"
                     >
                         <div className="text-gray-500 mr-2 font-bold">Weekly</div>
-                        <div className="text-2xl font-bold text-emerald-500">
-                            {property.rates.weekly ? (`$${property.rates.weekly.toLocaleString()}`) : (<FaTimes className="text-red-700"></FaTimes>)}
+                        <div className="text-2xl font-bold text-text-black">
+                            {property.rates.weekly ? (`$${property.rates.weekly.toLocaleString()}`) : (<FaTimes className="text-text-black"></FaTimes>)}
                         </div>
                     </div>
                     <div className="flex items-center justify-center mb-4 pb-4 md:pb-0">
                         <div className="text-gray-500 mr-2 font-bold">Monthly</div>
-                        <div className="text-2xl font-bold text-emerald-500">
-                            {property.rates.monthly ? (`$${property.rates.monthly.toLocaleString()}`) : (<FaTimes className="text-red-700"></FaTimes>)}
+                        <div className="text-2xl font-bold text-text-black">
+                            {property.rates.monthly ? (`$${property.rates.monthly.toLocaleString()}`) : (<FaTimes className="text-text-black"></FaTimes>)}
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ export default function PropertyDetailsPage({ property }: any) {
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                 <h3 className="text-lg font-bold mb-6">Description & Details</h3>
                 <div
-                    className="flex justify-center gap-4 text-emerald-700 mb-4 text-xl space-x-9"
+                    className="flex justify-left gap-4 text-black mb-6 text-xl space-x-9"
                 >
                     <p>
                         <FaBed className="mr-2 inline" />{property.beds}{' '}
@@ -77,7 +77,7 @@ export default function PropertyDetailsPage({ property }: any) {
                     {
                         property.amenities.map((amenity, index) => (
                             <li key={index}>
-                                <FaCheck className='text-green-700 inline mr-1' /> {amenity}
+                                <FaCheck className='text-black inline mr-1' /> {amenity}
                             </li>
                         ))
                     }

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function PropertyImages({ images }) {
     return (
-        <section className="bg-emerald-50 p-4">
+        <section className="bg-gray-100 p-4">
             <div className="container mx-auto">
                 {images.length === 1 ? (
                     <Image src={images[0]} alt='' className='object-cover h-[400px] mx-auto rounded-xl' width={1800}

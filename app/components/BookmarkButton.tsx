@@ -42,13 +42,13 @@ export default function BookmarkButton({ property }) {
 
     return isBookMarked ? (
         <div>
-            <button className="bg-red-500 hover:bg-red-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center mb-4" onClick={handleClick}>
+            <button className="bg-red-700 hover:bg-red-900 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center mb-4" onClick={handleClick}>
                 <FaBookmark className="mr-2" /> Remove from bookmark
             </button>
         </div>
     ) : (
         <div>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center mb-4" onClick={handleClick}>
+            <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center mb-4" onClick={handleClick}>
                 <FaBookmark className="mr-2" /> Bookmark this property
             </button>
         </div>
