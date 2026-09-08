@@ -31,11 +31,11 @@ export default function PropertyCard({ property }: any) {
                             <div className="text-gray-600 mb-2">{property.type}</div>
                             <h3 className="text-base font-bold">{property.name}</h3>
                         </div>
-                        <h3
-                            className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-black font-bold text-right md:text-center lg:text-right"
+                        <p
+                            className="text-base absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-black font-bold text-right md:text-center lg:text-right"
                         >
                             {getRateDisplay()}
-                        </h3>
+                        </p>
 
                         <div className="flex justify-left gap-4 text-black mb-4">
                             <p>

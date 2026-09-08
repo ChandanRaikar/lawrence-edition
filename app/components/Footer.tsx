@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import logo from '@/app/assets/images/logo.jpg'
+import logo from '@/app/assets/images/logo.png'
 
 export default function Footer() {
 

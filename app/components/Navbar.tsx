@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import Logo from '@/assets/styles/logo.jpg'
+import Logo from '@/app/assets/images/logo.png'
 import ProfileDefault from '@/app/assets/images/profile.png'
 import { FaGoogle } from 'react-icons/fa'
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
@@ -59,19 +59,20 @@ export default function Navbar() {
                     </div>
 
                     <div
-                        className="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
+                        className="flex flex-1 items-center justify-center md:justify-start"
                     >
                         {/* <!-- Logo --> */}
                         <Link className="flex flex-shrink-0 items-center" href="/">
                             <Image
-                                className="h-10 w-auto rounded-4xl"
+                                className="h-16 w-auto"
                                 src={Logo}
                                 alt="Lawrence Edition"
+                                title="Lawrence Edition"
                             />
 
-                            <span className="hidden md:block text-black text-2xl font-bold ml-2"
+                            {/* <span className="hidden md:block text-black text-2xl font-bold ml-2"
                             >LawrenceEdition</span
-                            >
+                            > */}
                         </Link>
                         {/* <!-- Desktop Menu Hidden below md screens --> */}
                         <div className="hidden md:ml-6 md:block">
