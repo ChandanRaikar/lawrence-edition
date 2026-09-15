@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
     title: {
-        default: 'Lawrence Edition',
+        default: 'Home | Lawrence Edition ',
         template: "%s | Lawrence Edition"
     },
     keywords: 'rent, property rental, real estate',
@@ -24,7 +24,7 @@ const MainLayout = ({ children }) => {
                         {children}
                     </main>
                     <Footer></Footer>
-                    <ToastContainer />
+                    <ToastContainer theme="dark" />
                 </body>
             </html>
         </AuthProvider>
