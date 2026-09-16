@@ -4,10 +4,11 @@ import Footer from './components/Footer';
 import AuthProvider from './components/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GlobalProvider } from './context/GlobalContext';
 
 export const metadata = {
     title: {
-        default: 'Lawrence Edition',
+        default: 'Home | Lawrence Edition ',
         template: "%s | Lawrence Edition"
     },
     keywords: 'rent, property rental, real estate',
@@ -17,16 +18,18 @@ export const metadata = {
 const MainLayout = ({ children }) => {
     return (
         <AuthProvider>
-            <html>
-                <body>
-                    <Navbar></Navbar>
-                    <main>
-                        {children}
-                    </main>
-                    <Footer></Footer>
-                    <ToastContainer />
-                </body>
-            </html>
+            <GlobalProvider>
+                <html>
+                    <body>
+                        <Navbar></Navbar>
+                        <main>
+                            {children}
+                        </main>
+                        <Footer></Footer>
+                        <ToastContainer theme="dark" />
+                    </body>
+                </html>
+            </GlobalProvider>
         </AuthProvider>
     );
 }

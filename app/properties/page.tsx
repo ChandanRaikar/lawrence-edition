@@ -2,6 +2,12 @@ import connectDB from '@/config/database';
 import PropertyCard from '../components/PropertyCard';
 import Property from '@/models/Property';
 
+export const metadata = {
+    title: {
+        default: 'Properties'
+    }
+}
+
 export default async function PropertiesPage() {
     await connectDB();
     const properties = await Property.find({}).lean();
