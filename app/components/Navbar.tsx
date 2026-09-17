@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Logo from '@/app/assets/images/logo.png'
 import ProfileDefault from '@/app/assets/images/profile.png'
-import { FaGoogle } from 'react-icons/fa'
+import { FaBell, FaGoogle } from 'react-icons/fa'
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { FaMessage } from "react-icons/fa6";
+import UnreadMessageCount from "./UnreadMessage";
 
 export default function Navbar() {
 
@@ -119,7 +119,7 @@ export default function Navbar() {
                                 >
                                     <span className="absolute -inset-1.5"></span>
                                     <span className="sr-only">View notifications</span>
-                                    <FaMessage />
+                                    <FaBell />
                                     {/* <svg
                                         className="h-6 w-6"
                                         fill="none"
@@ -135,12 +135,7 @@ export default function Navbar() {
                                         />
                                     </svg> */}
                                 </button>
-                                <span
-                                    className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"
-                                >
-                                    2
-                                    {/* <!-- Replace with the actual number of notifications --> */}
-                                </span>
+                                <UnreadMessageCount />
                             </Link>
                             {/* < !--Profile dropdown button --> */}
                             <div className="relative ml-3">

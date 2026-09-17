@@ -48,7 +48,6 @@ export default function PropertyMap({ property }) {
                 });
             }
             catch (error) {
-                console.log(error);
                 setgeocodeError(true)
             } finally {
                 setLoading(false);

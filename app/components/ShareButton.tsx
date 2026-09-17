@@ -4,7 +4,6 @@ import { FacebookShareButton, XShareButton, WhatsappShareButton, EmailShareButto
 
 export default function ShareButton({ property }) {
     const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
-    console.log('property:', property.type)
 
     return (
         <div>
