@@ -19,12 +19,10 @@ export default async function bookmarkProperty(propertyId) {
 
   if (isBookMarked) {
     user.bookmarks.pull(propertyId);
-    console.log("propid", propertyId);
     msg = "Removed from bookmarks";
     isBookMarked = false;
   } else {
     user.bookmarks.push(propertyId);
-    console.log("propid", propertyId);
     msg = "Added to bookmarks";
     isBookMarked = true;
   }
