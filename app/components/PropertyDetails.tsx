@@ -1,5 +1,6 @@
-import { FaBath, FaBed, FaCheck, FaMap, FaMapMarker, FaMapMarkerAlt, FaRulerCombined, FaTimes } from "react-icons/fa";
-import { FaMapLocation } from "react-icons/fa6";
+import { FaBath, FaBed, FaCheck, FaHotel, FaMap, FaMapMarker, FaMapMarkerAlt, FaRulerCombined, FaTimes } from "react-icons/fa";
+import { FaMapLocation, FaVault } from "react-icons/fa6";
+import { FaWifi, FaSnowflake, FaKitchenSet, FaSquareParking, FaPersonSwimming, FaShield, FaElevator, FaWheelchair, FaDumbbell, FaTv, FaBlender, FaCup } from "react-icons/fa6";
 import PropertyMap from "./PropertyMap";
 
 export default function PropertyDetailsPage({ property }: any) {
@@ -48,9 +49,9 @@ export default function PropertyDetailsPage({ property }: any) {
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-lg font-bold mb-6">Description & Details</h3>
+                <h3 className="text-lg font-bold mb-6">About Property</h3>
                 <div
-                    className="flex justify-left gap-4 text-black mb-6 text-xl space-x-9"
+                    className="flex justify-left gap-4 text-black mb-6 text-base space-x-9"
                 >
                     <p>
                         <FaBed className="mr-2 inline" />{property.beds}{' '}
@@ -71,13 +72,47 @@ export default function PropertyDetailsPage({ property }: any) {
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-lg font-bold mb-6">Amenities</h3>
+                <h3 className="text-lg text-xl font-bold mb-6">Features</h3>
 
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
                     {
                         property.amenities.map((amenity, index) => (
-                            <li key={index}>
-                                <FaCheck className='text-black inline mr-1' /> {amenity}
+                            <li key={index} className="py-2">
+                                {amenity === 'Wifi' ? (
+                                    <FaWifi className="text-black inline mr-2" />
+                                ) : amenity === 'Full kitchen' ? (
+                                    <FaKitchenSet className="text-black inline mr-2" />
+                                ) : amenity === 'Washer & Dryer' ? (
+                                    <FaKitchenSet className="text-black inline mr-2" />
+                                ) : amenity === 'Free Parking' ? (
+                                    <FaSquareParking className="text-black inline mr-2" />
+                                ) : amenity === 'Swimming Pool' ? (
+                                    <FaPersonSwimming className="text-black inline mr-2" />
+                                ) : amenity === 'Hot Tub' ? (
+                                    <FaBath className="text-black inline mr-2" />
+                                ) : amenity === '24/7 Security' ? (
+                                    <FaShield className="text-black inline mr-2" />
+                                ) : amenity === 'Wheelchair Accessible' ? (
+                                    <FaWheelchair className="text-black inline mr-2" />
+                                ) : amenity === 'Elevator Access' ? (
+                                    <FaElevator className="text-black inline mr-2" />
+                                ) : amenity === 'Dishwasher' ? (
+                                    <FaVault className="text-black inline mr-2" />
+                                ) : amenity === 'Gym/Fitness Center' ? (
+                                    <FaDumbbell className="text-black inline mr-2" />
+                                ) : amenity === 'Air Conditioning' ? (
+                                    <FaSnowflake className="text-black inline mr-2" />
+                                ) : amenity === 'Balcony/Patio' ? (
+                                    <FaHotel className="text-black inline mr-2" />
+                                ) : amenity === 'Smart TV' ? (
+                                    <FaTv className="text-black inline mr-2" />
+                                ) : amenity === 'Coffee Maker' ? (
+                                    <FaBlender className="text-black inline mr-2" />
+                                ) : (
+                                    <FaCheck className="text-black inline mr-2" />
+                                )}
+
+                                {amenity}
                             </li>
                         ))
                     }
