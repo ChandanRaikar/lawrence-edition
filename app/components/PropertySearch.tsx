@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { FaSearch } from 'react-icons/fa';
 
 
 export default function PropertySearch() {
