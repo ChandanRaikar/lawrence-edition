@@ -1,6 +1,8 @@
 import connectDB from '@/config/database';
 import PropertyCard from '../components/PropertyCard';
 import Property from '@/models/Property';
+import Pagination from '../components/Pagination';
+import PaginationSettings from '@/utils/paginationConfig';
 
 export const metadata = {
     title: {
@@ -8,9 +10,19 @@ export const metadata = {
     }
 }
 
-export default async function PropertiesPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export default async function PropertiesPage(props: { searchParams: SearchParams }) {
     await connectDB();
-    const properties = await Property.find({}).lean();
+    const PAGINATION_PAGE_SIZE = 20;
+    const searchParams = await props.searchParams
+    const page = searchParams.page || '1'
+    console.log("Page size", PAGINATION_PAGE_SIZE)
+
+    const offset = (page - 1) * PAGINATION_PAGE_SIZE;
+    const total = await Property.countDocuments({});
+    const properties = await Property.find({}).skip(offset).limit(PAGINATION_PAGE_SIZE);
+
     return (
         <section className="px-4 py-6">
             <div className="container-xl lg:container m-auto px-4 py-6">
@@ -25,6 +37,7 @@ export default async function PropertiesPage() {
                         </div>
                     )
                 }
+                <Pagination page={parseInt(page)} PAGINATION_PAGE_SIZE={parseInt(PAGINATION_PAGE_SIZE)} totalItems={total} />
             </div>
         </section>
     );
