@@ -14,10 +14,9 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default async function PropertiesPage(props: { searchParams: SearchParams }) {
     await connectDB();
-    const PAGINATION_PAGE_SIZE = 20;
+    const PAGINATION_PAGE_SIZE = 18;
     const searchParams = await props.searchParams
     const page = searchParams.page || '1'
-    console.log("Page size", PAGINATION_PAGE_SIZE)
 
     const offset = (page - 1) * PAGINATION_PAGE_SIZE;
     const total = await Property.countDocuments({});
