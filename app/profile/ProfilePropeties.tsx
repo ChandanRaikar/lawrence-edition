@@ -10,7 +10,7 @@ export default function ProfileProperties({ properties: initialProperties }) {
     const [properties, setProperties] = useState(initialProperties);
 
 
-    const handleDeleteProperty = async (propertyId) => {
+    const handleDeleteProperty = async (propertyId: number) => {
         const confirmed = window.confirm("Are you sure to delete this property?")
         if (!confirmed) {
             return;

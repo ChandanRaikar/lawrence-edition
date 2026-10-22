@@ -4,7 +4,7 @@ import User from "@/models/Users";
 import getSessionUser from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 
-export default async function bookmarkProperty(propertyId) {
+export default async function bookmarkProperty(propertyId: number) {
   await connectDB();
   const sessionUser = await getSessionUser();
 

@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 
-export default async function addProperty(formData) {
+export default async function addProperty(formData: FormData) {
   await connectDB();
   const sessionUser = await getSessionUser();
 
