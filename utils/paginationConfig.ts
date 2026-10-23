@@ -1,1 +1,1 @@
-export const PAGINATION_PAGE_SIZE = 18;
+export const PAGINATION_PAGE_SIZE = 20;
