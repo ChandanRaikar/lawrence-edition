@@ -2,7 +2,11 @@
 import Link from "next/link";
 import { FaExclamationTriangle } from 'react-icons/fa'
 
-export default function ErrorPage({ error }) {
+type ErrorPageProps = {
+    error: Error;
+}
+
+export default function ErrorPage({ error }: ErrorPageProps) {
     return (
         <section className="bg-blue-50 min-h-screen grow">
             <div className="container m-auto max-w-2xl py-24">

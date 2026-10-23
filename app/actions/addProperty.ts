@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 
-export default async function addProperty(formData) {
+export default async function addProperty(formData: FormData) {
   await connectDB();
   const sessionUser = await getSessionUser();
 
@@ -19,7 +19,7 @@ export default async function addProperty(formData) {
   const amenities = formData.getAll("amenities");
   const images = formData
     .getAll("images")
-    .filter((image: any) => image.name !== "");
+    .filter((image): image is File => image instanceof File && image.name !== "");
 
   const propertyData = {
     owner: userId,
@@ -62,9 +62,7 @@ export default async function addProperty(formData) {
     imageUrls.push(result.secure_url);
   }
 
-  propertyData.images = imageUrls;
-
-  const newProperty = new Property(propertyData);
+  const newProperty = new Property({ ...propertyData, images: imageUrls });
   await newProperty.save();
   revalidatePath("/", "layout");
   redirect(`/properties/${newProperty._id}`);

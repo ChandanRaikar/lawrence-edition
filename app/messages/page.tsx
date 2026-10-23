@@ -8,7 +8,7 @@ import MessageCard from "../components/MessageCard";
 export default async function Messages() {
     await connectDB()
     const sessionUser = await getSessionUser();
-    const { userId } = sessionUser;
+    const userId = sessionUser?.user?.id || '';
     const readMessages = await Message.find({ recipient: userId, read: true }).sort({ createdAt: -1 }).populate('sender', 'username').populate('property', 'name').lean();
     const unreadMessages = await Message.find({ recipient: userId, read: false }).sort({ createdAt: -1 }).populate('sender', 'username').populate('property', 'name').lean();
     const messages = [...unreadMessages, ...readMessages].map((messageBit) => {

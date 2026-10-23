@@ -20,7 +20,7 @@ export default function PropertyAddhtmlForm() {
                         <option value="Apartment">Apartment</option>
                         <option value="Condo">Condo</option>
                         <option value="House">House</option>
-                        <option value="CabinOrCottage">Cabin or Cottage</option>
+                        <option value="Cabin Or Cottage">Cabin or Cottage</option>
                         <option value="Room">Room</option>
                         <option value="Studio">Studio</option>
                         <option value="Other">Other</option>
@@ -49,7 +49,7 @@ export default function PropertyAddhtmlForm() {
                         id="description"
                         name="description"
                         className="border rounded w-full py-2 px-3"
-                        rows="4"
+                        rows={4}
                         placeholder="Add an optional description of your property"
                     ></textarea>
                 </div>

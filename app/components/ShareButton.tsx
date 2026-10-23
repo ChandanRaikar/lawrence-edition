@@ -2,7 +2,15 @@
 
 import { FacebookShareButton, XShareButton, WhatsappShareButton, EmailShareButton, FacebookIcon, XIcon, WhatsappIcon, EmailIcon } from "react-share"
 
-export default function ShareButton({ property }) {
+type shareButtonProps = {
+    property: {
+        _id: string,
+        name: string,
+        type: string
+    }
+}
+
+export default function ShareButton({ property }: shareButtonProps) {
     const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
 
     return (
@@ -11,11 +19,11 @@ export default function ShareButton({ property }) {
                 Share this property
             </h3>
             <div className="text-center mb-4">
-                <FacebookShareButton url={shareUrl} quote={property.name} hashtag={`# ${property.type.replace(/\s/g, '')}ForRent}`} className="mr-2">
+                <FacebookShareButton url={shareUrl} hashtag={`# ${property.type.replace(/\s/g, '')}ForRent}`} className="mr-2">
                     <FacebookIcon size={40} round={true} />
                 </FacebookShareButton>
 
-                <XShareButton url={shareUrl} quote={property.name} hashtags={[`# ${property.type.replace(/\s/g, '')}ForRent}`]} className="mr-2">
+                <XShareButton url={shareUrl} title={property.name} hashtags={[`# ${property.type.replace(/\s/g, '')}ForRent}`]} className="mr-2">
                     <XIcon size={40} round={true} />
                 </XShareButton>
 

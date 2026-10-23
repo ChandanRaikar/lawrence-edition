@@ -1,12 +1,13 @@
+import type { NextAuthOptions } from "next-auth";
 import Google from "next-auth/providers/google";
 import connectDB from "@/config/database";
 import User from "@/models/Users";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       authorization: {
         params: {
           prompt: "consent",
@@ -18,6 +19,10 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ profile }) {
+      if (!profile?.email || !profile.name) {
+        return false;
+      }
+
       await connectDB();
       const userExist = await User.findOne({ email: profile.email });
       if (!userExist) {
