@@ -3,7 +3,15 @@ import connectDB from "@/config/database";
 import Message from "@/models/Message";
 import getSessionUser from "@/utils/getSessionUser";
 
-export default async function addMessage(formData: FormData) {
+type MessageFormState = {
+  error?: string;
+  submitted?: boolean;
+};
+
+export default async function addMessage(
+  _prevState: MessageFormState,
+  formData: FormData,
+): Promise<MessageFormState> {
   await connectDB();
   const sessionUser = await getSessionUser();
 

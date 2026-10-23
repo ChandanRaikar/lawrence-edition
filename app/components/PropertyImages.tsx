@@ -2,7 +2,10 @@
 import Image from "next/image";
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
-export default function PropertyImages({ images }) {
+type PropertyImagesProps = {
+    images: string[];
+};
+export default function PropertyImages({ images }: PropertyImagesProps) {
     return (
         <Gallery>
             <section className="bg-gray-100 p-4">

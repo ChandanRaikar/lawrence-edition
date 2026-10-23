@@ -3,7 +3,7 @@ import connectDB from "@/config/database";
 import User from "@/models/Users";
 import getSessionUser from "@/utils/getSessionUser";
 
-export default async function checkBookMarkStatus(propertyId: number) {
+export default async function checkBookMarkStatus(propertyId: string) {
   await connectDB();
   const sessionUser = await getSessionUser();
 

@@ -2,10 +2,14 @@ import Link from "next/link"
 
 type Props = {
     heading: string,
-    buttonInfo: string,
+    buttonInfo: {
+        text: string,
+        alink: string,
+        backgroundColor: string,
+    },
     children: React.ReactNode,
-    backgoundColor: string,
-    textColor: string
+    backgoundColor?: string,
+    textColor?: string
 }
 
 export default function InfoBox({ heading, backgoundColor = 'bg-gray-100', textColor = 'text-gray-800', buttonInfo, children }: Props) {

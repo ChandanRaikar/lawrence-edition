@@ -5,12 +5,26 @@ import Image from "next/image";
 import deleteProperty from "../actions/deleteProperty";
 import { toast } from "react-toastify";
 
+type ProfileProperty = {
+    _id: string;
+    name: string;
+    images: string;
+    location: {
+        street?: string;
+        city?: string
+        state?: string
+    }
+}
 
-export default function ProfileProperties({ properties: initialProperties }) {
+type ProfilePropetiesPage = {
+    properties: ProfileProperty[];
+}
+
+export default function ProfileProperties({ properties: initialProperties }: ProfilePropetiesPage) {
     const [properties, setProperties] = useState(initialProperties);
 
 
-    const handleDeleteProperty = async (propertyId: number) => {
+    const handleDeleteProperty = async (propertyId: string) => {
         const confirmed = window.confirm("Are you sure to delete this property?")
         if (!confirmed) {
             return;

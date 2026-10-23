@@ -1,5 +1,10 @@
 import Link from "next/link"
-export default function Pagination({ page, PAGINATION_PAGE_SIZE, totalItems }) {
+type PaginationProps = {
+    page: number;
+    PAGINATION_PAGE_SIZE: number;
+    totalItems: number;
+};
+export default function Pagination({ page, PAGINATION_PAGE_SIZE, totalItems }: PaginationProps) {
     const totalPages = Math.ceil(totalItems / PAGINATION_PAGE_SIZE)
     return (
         <section className="container mx-auto flex justify-center items-center my-8">

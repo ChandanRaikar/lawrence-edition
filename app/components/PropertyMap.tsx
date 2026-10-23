@@ -1,7 +1,7 @@
 'use client'
 import { setGlobal } from "next/dist/trace";
 import { useEffect, useState } from "react";
-import { setDefaults, fromAddress } from "react-geocode";
+import { setDefaults, fromAddress, OutputFormat } from "react-geocode";
 import Map from "react-map-gl/mapbox";
 import { Marker } from "react-map-gl/mapbox";
 import Image from "next/image";
@@ -9,7 +9,18 @@ import pin from '@/app/assets/images/pin.svg'
 import Spinner from "./Spinner";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-export default function PropertyMap({ property }) {
+type PropertyMapProps = {
+    property: {
+        location: {
+            street?: string,
+            city?: string,
+            state?: string,
+            zipcode?: string
+        }
+    }
+}
+
+export default function PropertyMap({ property }: PropertyMapProps) {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [viewport, setviewport] = useState({
@@ -27,7 +38,7 @@ export default function PropertyMap({ property }) {
         key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
         language: 'en',
         region: 'us',
-        outputFormat: 'json'
+        outputFormat: OutputFormat.JSON
     })
 
     useEffect(() => {
@@ -68,13 +79,13 @@ export default function PropertyMap({ property }) {
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAP_BOX_TOKEN}
                 mapLib={import('mapbox-gl')}
                 initialViewState={{
-                    longitude: lon,
-                    latitude: lat,
+                    longitude: lon || 0,
+                    latitude: lat || 0,
                     zoom: 14
                 }}
                 style={{ width: '100%', height: 400 }}
                 mapStyle="mapbox://styles/mapbox/streets-v9">
-                <Marker longitude={lon} latitude={lat} anchor='bottom'>
+                <Marker longitude={lon || 0} latitude={lat || 0} anchor='bottom'>
                     <Image src={pin} alt="location" height={40} width={40} />
                 </Marker>
             </Map >

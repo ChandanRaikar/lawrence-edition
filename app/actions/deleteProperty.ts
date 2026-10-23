@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import cloudinary from "@/config/cloudinary";
 import getSessionUser from "@/utils/getSessionUser";
 
-export default async function deleteProperty(propertyId: number) {
+export default async function deleteProperty(propertyId: string) {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.userId) {
@@ -21,9 +21,9 @@ export default async function deleteProperty(propertyId: number) {
     throw new Error("Unauthorized");
   }
 
-  const publicIds = property.images.map((imageUrl) => {
+  const publicIds = property.images.map((imageUrl: string) => {
     const parts = imageUrl.split("/");
-    return parts.at(-1).split(".").at(0);
+    return parts.at(-1)?.split(".").at(0);
   });
 
   if (publicIds.lenght > 0) {

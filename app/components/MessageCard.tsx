@@ -7,7 +7,20 @@ import messageRead from "../actions/messageRead";
 import messageDelete from "../actions/messageDelete";
 import { useGlobalContext } from "../context/GlobalContext";
 
-export default function MessageCard({ message }) {
+type MessageCardProps = {
+    message: {
+        _id: string;
+        read: boolean;
+        body?: string;
+        email: string;
+        phone?: string;
+        property: {
+            name: string;
+        };
+    };
+};
+
+export default function MessageCard({ message }: MessageCardProps) {
     const [isRead, setIsRead] = useState(message.read);
     const [isDeleted, setIsDeleted] = useState(false);
 
@@ -17,14 +30,14 @@ export default function MessageCard({ message }) {
     const handleMessageRead = async () => {
         const readMessages = await messageRead(message._id);
         setIsRead(readMessages);
-        setUnreadMessages((prevCount) => (readMessages ? prevCount - 1 : prevCount + 1))
+        setUnreadMessages((prevCount: number) => (readMessages ? prevCount - 1 : prevCount + 1))
         toast.success(`Marked as ${readMessages ? "Read" : "New"}`)
     }
 
     const handleMessageDelete = async () => {
         await messageDelete(message._id);
         setIsDeleted(true);
-        setUnreadMessages((prevCount) => (isRead ? prevCount : prevCount - 1))
+        setUnreadMessages((prevCount: number) => (isRead ? prevCount : prevCount - 1))
         toast.success('Message Deleted')
     }
 

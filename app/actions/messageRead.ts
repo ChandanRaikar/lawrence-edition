@@ -4,7 +4,7 @@ import Message from "@/models/Message";
 import getSessionUser from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 
-export default async function messageRead(messageId: number) {
+export default async function messageRead(messageId: string) {
   await connectDB();
   const sessionUser = await getSessionUser();
 

@@ -1,9 +1,33 @@
 import { FaBath, FaBed, FaCheck, FaHotel, FaMap, FaMapMarker, FaMapMarkerAlt, FaRulerCombined, FaTimes } from "react-icons/fa";
 import { FaMapLocation, FaVault } from "react-icons/fa6";
-import { FaWifi, FaSnowflake, FaKitchenSet, FaSquareParking, FaPersonSwimming, FaShield, FaElevator, FaWheelchair, FaDumbbell, FaTv, FaBlender, FaCup } from "react-icons/fa6";
+import { FaWifi, FaSnowflake, FaKitchenSet, FaSquareParking, FaPersonSwimming, FaShield, FaElevator, FaWheelchair, FaDumbbell, FaTv, FaBlender } from "react-icons/fa6";
 import PropertyMap from "./PropertyMap";
 
-export default function PropertyDetailsPage({ property }: any) {
+type PropertyDetailsPageProps = {
+    property: {
+        _id: string;
+        type: string;
+        name: string;
+        location: {
+            street: string;
+            city: string;
+            state: string;
+            zipcode: string;
+        };
+        rates: {
+            nightly: number;
+            weekly: number;
+            monthly: number;
+        };
+        beds: number;
+        baths: number;
+        square_feet: number;
+        description: string;
+        amenities: string[];
+    };
+};
+
+export default function PropertyDetailsPage({ property }: PropertyDetailsPageProps) {
     return (
         <main>
             <div

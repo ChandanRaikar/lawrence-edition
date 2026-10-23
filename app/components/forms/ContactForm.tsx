@@ -6,11 +6,17 @@ import addMessage from "@/app/actions/addMessage"
 import { toast } from "react-toastify"
 import SubmitButton from "./SubmitButton"
 
+type ContactFormProps = {
+    property: {
+        _id: string;
+        owner: string;
+    };
+};
 
-export default function ContactForm({ property }) {
+export default function ContactForm({ property }: ContactFormProps) {
     const { data: session } = useSession();
 
-    const [state, formAction] = useActionState(addMessage, {});
+    const [state, formAction] = useActionState(addMessage, { error: "", submitted: false });
 
     useEffect(() => {
         if (state.error) toast.error(state.error);

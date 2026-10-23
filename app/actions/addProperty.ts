@@ -19,7 +19,7 @@ export default async function addProperty(formData: FormData) {
   const amenities = formData.getAll("amenities");
   const images = formData
     .getAll("images")
-    .filter((image: any) => image.name !== "");
+    .filter((image): image is File => image instanceof File && image.name !== "");
 
   const propertyData = {
     owner: userId,
@@ -62,9 +62,7 @@ export default async function addProperty(formData: FormData) {
     imageUrls.push(result.secure_url);
   }
 
-  propertyData.images = imageUrls;
-
-  const newProperty = new Property(propertyData);
+  const newProperty = new Property({ ...propertyData, images: imageUrls });
   await newProperty.save();
   revalidatePath("/", "layout");
   redirect(`/properties/${newProperty._id}`);

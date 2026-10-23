@@ -7,8 +7,13 @@ import { useSession } from "next-auth/react";
 import checkBookMarkStatus from "../actions/checkBookMarkStatus";
 
 
-export default function BookmarkButton({ property }) {
+type BookmarkButtonProps = {
+    property: {
+        _id: string;
+    }
+}
 
+export default function BookmarkButton({ property }: BookmarkButtonProps) {
     const { data: session } = useSession();
     const userId = session?.user?.id;
     const [isBookMarked, setIsBookMarked] = useState(false);
@@ -32,11 +37,15 @@ export default function BookmarkButton({ property }) {
             return;
         }
 
-        bookmarkProperty(property._id).then((res) => {
-            if (res.error) return toast.error(res.error);
-            setIsBookMarked(res.isBookMarked)
-            toast.success(res.msg);
-        })
+        bookmarkProperty(property._id)
+            .then((res) => {
+                setIsBookMarked(res.isBookMarked)
+                toast.success(res.msg);
+            })
+            .catch((error: unknown) => {
+                const message = error instanceof Error ? error.message : "Could not update bookmark";
+                toast.error(message);
+            })
     }
 
 

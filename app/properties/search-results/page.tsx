@@ -7,14 +7,30 @@ import PropertyCard from '@/app/components/PropertyCard';
 import PropertySearch from '@/app/components/PropertySearch';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
-export default async function searchResults({ searchParams }) {
+type SearchResultsProps = {
+    searchParams: Promise<{
+        location?: string | string[];
+        propertyType?: string | string[];
+    }>;
+};
+
+function firstParam(value: string | string[] | undefined) {
+    return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function searchResults({ searchParams }: SearchResultsProps) {
     await connectDB();
 
-    const { location, propertyType } = await searchParams;
+    const params = await searchParams;
+    const location = firstParam(params.location) ?? "";
+    const propertyType = firstParam(params.propertyType);
 
     const locationPattern = new RegExp(location, 'i');
+    const typePattern = propertyType && propertyType !== 'All'
+        ? new RegExp(propertyType, 'i')
+        : undefined;
 
-    let query = {
+    const query = {
         $or: [
             { name: locationPattern },
             { description: locationPattern },
@@ -22,13 +38,9 @@ export default async function searchResults({ searchParams }) {
             { 'location.city': locationPattern },
             { 'location.state': locationPattern },
             { 'location.zipcode': locationPattern },
-        ]
-    }
-
-    if (propertyType && propertyType !== 'All') {
-        const typePattern = new RegExp(propertyType, 'i');
-        query.type = typePattern;
-    }
+        ],
+        ...(typePattern ? { type: typePattern } : {}),
+    };
 
     const propertiesQueryResults = await Property.find(query).lean();
     const properties = convertToSerializableObject(propertiesQueryResults);

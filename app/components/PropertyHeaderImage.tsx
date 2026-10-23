@@ -1,5 +1,8 @@
 import Image from "next/image"
-export default function PropertyHeaderImage({ image }) {
+type PropertyHeaderImageProps = {
+    image: string;
+};
+export default function PropertyHeaderImage({ image }: PropertyHeaderImageProps) {
     return (
         <section>
             <div className="container-xl m-auto">

@@ -11,7 +11,12 @@ export default async function ProfilePage() {
 
     await connectDB;
     const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+        throw new Error('user id is required!')
+    }
     const { userId } = sessionUser;
+
 
     if (!userId) {
         throw new Error('User id required')
@@ -32,7 +37,7 @@ export default async function ProfilePage() {
                             <div className="mb-4">
                                 <Image
                                     className="h-20 w-20 md:h-24 md:w-24 rounded-full mx-auto md:mx-0"
-                                    src={sessionUser.user.image || profileDefault}
+                                    src={sessionUser?.user.image || profileDefault}
                                     loading="eager"
                                     width={300}
                                     height={300}
@@ -41,10 +46,10 @@ export default async function ProfilePage() {
                             </div>
 
                             <h2 className="text-base mb-4">
-                                <span className="font-bold block">Name: </span> {sessionUser.user.name}
+                                <span className="font-bold block">Name: </span> {sessionUser?.user.name}
                             </h2>
                             <h2 className="text-base">
-                                <span className="font-bold block">Email: </span> {sessionUser.user.email}
+                                <span className="font-bold block">Email: </span> {sessionUser?.user.email}
                             </h2>
                         </div>
 

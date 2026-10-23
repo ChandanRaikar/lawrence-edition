@@ -15,7 +15,7 @@ export default function Navbar() {
     const profileImage = session?.user?.image;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    const [providers, setProviders] = useState(null)
+    const [providers, setProviders] = useState<Awaited<ReturnType<typeof getProviders>>>(null)
     const pathname = usePathname();
 
     useEffect(() => {
@@ -169,13 +169,13 @@ export default function Navbar() {
                                             role="menu"
                                             aria-orientation="vertical"
                                             aria-labelledby="user-menu-button"
-                                            tabIndex="-1"
+                                            tabIndex={-1}
                                         >
                                             <Link
                                                 href="/profile"
                                                 className="block px-4 py-2 text-sm text-gray-700"
                                                 role="menuitem"
-                                                tabIndex="-1"
+                                                tabIndex={-1}
                                                 id="user-menu-item-0"
                                                 onClick={() => setIsProfileMenuOpen(false)}
                                             >Your Profile</Link
@@ -184,14 +184,14 @@ export default function Navbar() {
                                                 href="/properties/saved"
                                                 className="block px-4 py-2 text-sm text-gray-700"
                                                 role="menuitem"
-                                                tabIndex="-1"
+                                                tabIndex={-1}
                                                 id="user-menu-item-2"
                                                 onClick={() => setIsProfileMenuOpen(false)}
                                             >Saved Properties</Link>
                                             <button
                                                 className="block px-4 py-2 text-sm text-gray-700"
                                                 role="menuitem"
-                                                tabIndex="-1"
+                                                tabIndex={-1}
                                                 onClick={() => {
                                                     setIsProfileMenuOpen(false)
                                                     signOut();

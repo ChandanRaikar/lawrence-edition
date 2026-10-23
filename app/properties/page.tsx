@@ -2,7 +2,7 @@ import connectDB from '@/config/database';
 import PropertyCard from '../components/PropertyCard';
 import Property from '@/models/Property';
 import Pagination from '../components/Pagination';
-import PaginationSettings from '@/utils/paginationConfig';
+import { PAGINATION_PAGE_SIZE } from '@/utils/paginationConfig';
 
 export const metadata = {
     title: {
@@ -14,9 +14,10 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default async function PropertiesPage(props: { searchParams: SearchParams }) {
     await connectDB();
-    const PAGINATION_PAGE_SIZE = 18;
     const searchParams = await props.searchParams
-    const page = searchParams.page || '1'
+    const pageParam = Array.isArray(searchParams.page) ? searchParams.page[0] : searchParams.page
+    const parsedPage = Number(pageParam)
+    const page = Number.isInteger(parsedPage) && parsedPage > 0 ? parsedPage : 1
 
     const offset = (page - 1) * PAGINATION_PAGE_SIZE;
     const total = await Property.countDocuments({});
@@ -36,7 +37,7 @@ export default async function PropertiesPage(props: { searchParams: SearchParams
                         </div>
                     )
                 }
-                <Pagination page={parseInt(page)} PAGINATION_PAGE_SIZE={parseInt(PAGINATION_PAGE_SIZE)} totalItems={total} />
+                <Pagination page={page} PAGINATION_PAGE_SIZE={PAGINATION_PAGE_SIZE} totalItems={total} />
             </div>
         </section>
     );

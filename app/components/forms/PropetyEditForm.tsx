@@ -1,6 +1,35 @@
 import editProperty from "@/app/actions/editProperty"
 
-export default function PropertyEditForm({ property }: any) {
+type PropertyEditFormProps = {
+    property: {
+        _id: string;
+        type: string;
+        name: string;
+        description?: string;
+        location: {
+            street?: string;
+            city?: string;
+            state?: string;
+            zipcode?: string;
+        };
+        beds: number;
+        baths: number;
+        square_feet: number;
+        amenities: string[];
+        rates: {
+            weekly?: number;
+            monthly?: number;
+            nightly?: number;
+        };
+        seller_info: {
+            name?: string;
+            email?: string;
+            phone?: string;
+        };
+    };
+};
+
+export default function PropertyEditForm({ property }: PropertyEditFormProps) {
     const updatedPropertyById = editProperty.bind(null, property._id)
     return (
         <form action={updatedPropertyById}>
@@ -52,7 +81,7 @@ export default function PropertyEditForm({ property }: any) {
                     id="description"
                     name="description"
                     className="border rounded w-full py-2 px-3"
-                    rows="4"
+                    rows={4}
                     defaultValue={property.description}
                     placeholder="Add an optional description of your property"
                 ></textarea>

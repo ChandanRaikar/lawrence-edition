@@ -2,7 +2,24 @@ import Image from "next/image"
 import Link from "next/link"
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarkerAlt } from 'react-icons/fa'
 
-export default function FeaturedPropertyCard({ property }) {
+type FeaturedPropertyCardProps = {
+    property: {
+        _id: string;
+        name: string;
+        type: string;
+        beds: number;
+        baths: number;
+        square_feet: number;
+        images: string[];
+        rates: {
+            monthly?: number;
+            weekly?: number;
+            nightly?: number;
+        };
+    };
+};
+
+export default function FeaturedPropertyCard({ property }: FeaturedPropertyCardProps) {
 
     const getRateDisplay = () => {
         const { rates } = property;

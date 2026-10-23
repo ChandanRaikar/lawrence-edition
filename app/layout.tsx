@@ -16,7 +16,11 @@ export const metadata = {
     description: 'Search available to rent properties'
 }
 
-const MainLayout = ({ children }) => {
+type MainLayoutProps = {
+    children: React.ReactNode;
+}
+
+const MainLayout = ({ children }: MainLayoutProps) => {
     return (
         <AuthProvider>
             <GlobalProvider>

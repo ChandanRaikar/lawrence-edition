@@ -4,7 +4,7 @@ import Message from "@/models/Message";
 import { revalidatePath } from "next/cache";
 import getSessionUser from "@/utils/getSessionUser";
 
-export default async function messageDelete(messageId: number) {
+export default async function messageDelete(messageId: string) {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.userId) {

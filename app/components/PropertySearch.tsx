@@ -10,7 +10,7 @@ export default function PropertySearch() {
 
     const router = useRouter();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (location === '' && propertyType === 'all') {
