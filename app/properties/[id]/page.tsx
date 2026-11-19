@@ -40,7 +40,7 @@ export default async function PropertyPage({ params }: Props) {
             </section>
             <section className="bg-gray-100">
                 <div className="container m-auto py-10 px-6">
-                    <div className="grid grid-cols-12 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div className="md:col-span-8">
                             <PropertyDetailsPage property={property} />
                         </div>
